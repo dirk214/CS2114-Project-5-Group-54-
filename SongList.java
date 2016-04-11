@@ -28,16 +28,14 @@ public class SongList {
         }
         list = new LinkedList<Song>();
 
-        if (scanner.hasNextLine()) {
-            String[] str = scanner.nextLine().split(",");
-            Song song = new Song(str[0], str[1], str[3], str[2]);
-            list.add(song);
-        }
-
-        while (scanner.hasNextLine()) {
+        if (scanner.hasNextLine())
+        {
             scanner.nextLine();
+        }
+        
+        while (scanner.hasNextLine()) {
             String[] str = scanner.nextLine().split(",");
-            Song song = new Song(str[0], str[1], str[3], str[2]);
+            Song song = new Song(str[1], str[0], str[3], str[2]);
             list.add(song);
         }
     }
@@ -49,7 +47,7 @@ public class SongList {
     public void sortByArtistName() {
         for (int i = 0; i < list.size(); i++) {
             Song song = list.get(i);
-            int index = 0;
+            int index = i;
             for (int j = i + 1; j < list.size(); j++) {
                 if (comp.compare(song.getArtistName(),
                         list.get(j).getArtistName()) > 0) {
