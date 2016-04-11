@@ -1,0 +1,90 @@
+/**
+ * 
+ */
+package prj5;
+
+import student.TestCase;
+
+/**
+ * @author Chris
+ *
+ */
+public class SongTest extends TestCase {
+    Song song;
+    public void setUp()
+    {
+        song = new Song("Green Day", "Holiday", "punk rock", "2004");
+        song.hobbyArray[0][1]++;
+        song.hobbyArray[1][3]++;
+        song.majorArray[0][2]++;
+        song.majorArray[1][3]++;
+        song.regionArray[0][1]++;
+        song.regionArray[1][0]++;
+    }
+    
+    public void testGetArtistName()
+    {
+        assertEquals("Green Day", song.getArtistName());
+    }
+    
+    public void testGetSongTitle()
+    {
+        assertEquals("Holiday", song.getSongTitle());
+    }
+    
+    public void testGetGenre()
+    {
+        assertEquals("punk rock", song.getGenre());
+    }
+    
+    public void testGetDate()
+    {
+        assertEquals("2004", song.getDate());
+    }
+    
+    public void testGetHeard()
+    {
+        assertEquals(1, song.getHeard("Art"));
+        assertEquals(1, song.getHeard("Math/CMDA"));
+        assertEquals(1, song.getHeard("Southeast US"));
+        assertEquals(0, song.getHeard("Sports"));
+    }
+    
+    public void testGetHeardException()
+    {
+        Exception exception = null;
+        try {
+            song.getHeard("History");
+            fail("getHeard() is not throwing an exception when it should");
+        }
+        catch (Exception e)
+        {
+            exception = e;
+        }
+        assertTrue("getHeard() is throwing the wrong type of exceptions",
+                exception instanceof IllegalArgumentException);
+    }
+    
+    public void testGetLikes()
+    {
+        assertEquals(1, song.getLikes("Music"));
+        assertEquals(1, song.getLikes("Other"));
+        assertEquals(1, song.getLikes("Northeast US"));
+        assertEquals(0, song.getLikes("Sports"));
+    }
+    
+    public void testGetLikesException()
+    {
+        Exception exception = null;
+        try {
+            song.getLikes("History");
+            fail("getLikes() is not throwing an exception when it should");
+        }
+        catch (Exception e)
+        {
+            exception = e;
+        }
+        assertTrue("getLikes() is throwing the wrong type of exceptions",
+                exception instanceof IllegalArgumentException);
+    }
+}
