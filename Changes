@@ -1,0 +1,4 @@
+Changes to the UML diagram go here.
+
+SongList:
+SongList(File file) --> SongList(String songs)
