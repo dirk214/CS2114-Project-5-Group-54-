@@ -5,10 +5,9 @@ package prj5;
 
 /**
  * @author Group 54
- * @version 2016.04.10
- * A Song contains an artist name, title, genre, and year date.
- * It also has information on who has heard/liked it based on 
- * someone's hobby, major, or region.
+ * @version 2016.04.10 A Song contains an artist name, title, genre, and year
+ *          date. It also has information on who has heard/liked it based on
+ *          someone's hobby, major, or region.
  *
  */
 public class Song {
@@ -48,54 +47,41 @@ public class Song {
     }
 
     public int getHeard(String category) {
-        int cat = 12;
-        switch (cat) {
-        case 1:
-            category = "Read";
+        switch (category) {
+        case "Read":
             return hobbyArray[0][0];
 
-        case 2:
-            category = "Art";
+        case "Art":
             return hobbyArray[0][1];
 
-        case 3:
-            category = "Sports";
+        case "Sports":
             return hobbyArray[0][2];
 
-        case 4:
-            category = "Music";
+        case "Music":
             return hobbyArray[0][3];
 
-        case 5:
-            category = "Comp Sci";
+        case "Comp Sci":
             return majorArray[0][0];
 
-        case 6:
-            category = "Other Eng";
+        case "Other Eng":
             return majorArray[0][1];
 
-        case 7:
-            category = "Math/CMDA";
+        case "Math/CMDA":
             return majorArray[0][2];
 
-        case 8:
-            category = "Other";
+        case "Other":
             return majorArray[0][3];
 
-        case 9:
-            category = "Northeast US";
+        case "Northeast US":
             return regionArray[0][0];
 
-        case 10:
-            category = "Southeast US";
+        case "Southeast US":
             return regionArray[0][1];
 
-        case 11:
-            category = "Other US";
+        case "Other US":
             return regionArray[0][2];
 
-        case 12:
-            category = "Outside US";
+        case "Outside US":
             return regionArray[0][3];
 
         default:
@@ -104,54 +90,44 @@ public class Song {
     }
 
     public int getLikes(String category) {
-        int cat = 12;
-        switch (cat) {
-        case 1:
+        switch (category) {
+        case "Read":
             category = "Read";
             return hobbyArray[1][0];
 
-        case 2:
+        case "Art":
             category = "Art";
             return hobbyArray[1][1];
 
-        case 3:
+        case "Sports":
             category = "Sports";
             return hobbyArray[1][2];
 
-        case 4:
-            category = "Music";
+        case "Music":
             return hobbyArray[1][3];
 
-        case 5:
-            category = "Comp Sci";
+        case "Comp Sci":
             return majorArray[1][0];
 
-        case 6:
-            category = "Other Eng";
+        case "Other Eng":
             return majorArray[1][1];
 
-        case 7:
-            category = "Math/CMDA";
+        case "Math/CMDA":
             return majorArray[1][2];
 
-        case 8:
-            category = "Other";
+        case "Other":
             return majorArray[1][3];
 
-        case 9:
-            category = "Northeast US";
+        case "Northeast US":
             return regionArray[1][0];
 
-        case 10:
-            category = "Southeast US";
+        case "Southeast US":
             return regionArray[1][1];
 
-        case 11:
-            category = "Other US";
+        case "Other US":
             return regionArray[1][2];
 
-        case 12:
-            category = "Outside US";
+        case "Outside US":
             return regionArray[1][3];
 
         default:
