@@ -80,6 +80,11 @@ public class SongWindow
     /**
      * 
      */
+    Key mainKey;
+    
+    /**
+     * 
+     */
     public SongWindow(SongList list)
     {
         // Window Instantiation.
@@ -87,6 +92,10 @@ public class SongWindow
         
         // SongList Instantiation.
         ourList = list;
+        
+        // Key Instantiation and addition.
+        mainKey = new Key();
+        mainWindow.addShape(mainKey);
         
         //Button Instantiation.
         previous = new Button("⬅ Previous");
@@ -207,6 +216,136 @@ public class SongWindow
      */
     public void clickedQuit()
     {
+        
+    }
+    
+    
+    /**
+     * @author Group54
+     * @version 2016.04.11
+     */
+    private class Key extends Shape
+    {
+        
+        /**
+         * 
+         */
+        TextShape keyTitle;
+        
+        /**
+         * 
+         */
+        TextShape purpleText;
+        
+        /**
+         * 
+         */
+        TextShape blueText;
+        
+        /**
+         * 
+         */
+        TextShape yellowText;
+        
+        /**
+         * 
+         */
+        TextShape greenText;
+        
+        /**
+         * 
+         */
+        TextShape songText;
+        
+        /**
+         * 
+         */
+        TextShape heardText;
+        
+        /**
+         * 
+         */
+        TextShape likedText;
+        
+        /**
+         * 
+         */
+        Shape blackBar;
+        
+        /**
+         * 
+         */
+        int xValue;
+        
+        /**
+         * 
+         */
+        int yValue;
+        
+        /**
+         * 
+         * @param x
+         * @param y
+         */
+        public Key(int x, int y)
+        {
+            super(x, y);
+            xValue = x;
+            yValue = y;
+            
+            //Fields instantiation.
+            keyTitle = new TextShape();
+            purpleText = new TextShape();
+            yellowText = new TextShape();
+            blueText = new TextShape();
+            greenText = new TextShape();
+            songText = new TextShape();
+            heardText = new TextShape();
+            likedText = new TextShape();
+            blackBar = new Shape();
+            
+            //Fields addition.
+            
+            mainWindow.addShape(keyTitle);
+            mainWindow.addShape(purpleText);
+            mainWindow.addShape(greenText);
+            mainWindow.addShape(blueText);
+            mainWindow.addShape(yellowText);
+            mainWindow.addShape(songText);
+            mainWindow.addShape(heardText);
+            mainWindow.addShape(likedText);
+            mainWindow.addShape(blackBar);           
+        }
+        
+        /**
+         * 
+         */
+        public int getX()
+        {
+            return xValue;
+        }
+        
+        /**
+         * 
+         */
+        public int getY()
+        {
+            return yValue;
+        }
+        
+        
+        /**
+         * Is called by the button onClickMethods and redo's the key.
+         */
+        public void updateKey(String newTitle, String newGreen, 
+                String newPurple, String newYellow, String newBlue)
+        {
+            keyTitle.setText(newTitle);
+            greenText.setText(newGreen);
+            yellowText.setText(newYellow);
+            blueText.setText(newBlue);
+            purpleText.setText(newPurple);
+        }
         
     }
 }
