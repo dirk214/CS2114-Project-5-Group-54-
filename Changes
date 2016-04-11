@@ -2,3 +2,5 @@ Changes to the UML diagram go here.
 
 SongList:
 SongList(File file) --> SongList(String songs)
+(new) [private class inside SongList] StringComparator implements Comparator<String>
+Note: Not sure if we need an iterator
