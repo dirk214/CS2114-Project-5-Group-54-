@@ -48,25 +48,25 @@ public class Song {
 
     public int getHeard(String category) {
         switch (category) {
-        case "Read":
+        case "read":
             return hobbyArray[0][0];
 
-        case "Art":
+        case "art":
             return hobbyArray[0][1];
 
-        case "Sports":
+        case "sports":
             return hobbyArray[0][2];
 
-        case "Music":
+        case "music":
             return hobbyArray[0][3];
 
-        case "Comp Sci":
+        case "Computer Science":
             return majorArray[0][0];
 
         case "Other Eng":
             return majorArray[0][1];
 
-        case "Math/CMDA":
+        case "Math or CMDA":
             return majorArray[0][2];
 
         case "Other":
@@ -91,28 +91,28 @@ public class Song {
 
     public int getLikes(String category) {
         switch (category) {
-        case "Read":
+        case "read":
             category = "Read";
             return hobbyArray[1][0];
 
-        case "Art":
+        case "art":
             category = "Art";
             return hobbyArray[1][1];
 
-        case "Sports":
+        case "sports":
             category = "Sports";
             return hobbyArray[1][2];
 
-        case "Music":
+        case "music":
             return hobbyArray[1][3];
 
-        case "Comp Sci":
+        case "Computer Science":
             return majorArray[1][0];
 
         case "Other Eng":
             return majorArray[1][1];
 
-        case "Math/CMDA":
+        case "Math or CMDA":
             return majorArray[1][2];
 
         case "Other":
