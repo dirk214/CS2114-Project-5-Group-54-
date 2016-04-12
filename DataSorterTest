@@ -1,0 +1,30 @@
+/**
+ * 
+ */
+package prj5;
+
+import student.TestCase;
+
+/**
+ * @author Chris
+ *
+ */
+public class DataSorterTest extends TestCase {
+    DataSorter sorter;
+    SongList songList;
+
+// Note: This uses my own personal test files. I've uploaded those in case anyone wants to use them.
+    public void setUp() {
+        songList = new SongList("testList.csv");
+        sorter = new DataSorter("TestSurvey.csv", songList);
+    }
+
+    public void testSortData() {
+        sorter.sortData();
+        assertEquals(1, songList.getList().get(0).getHeard("music"));
+        assertEquals(2, songList.getList().get(1).getLikes("Computer Science"));
+        assertEquals(2, songList.getList().get(0).getLikes("Southeast US"));
+        assertEquals(4, songList.getList().get(4).getHeard("Southeast US"));
+    }
+
+}
