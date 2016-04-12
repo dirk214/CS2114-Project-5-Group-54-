@@ -1,0 +1,130 @@
+/**
+ * 
+ */
+package prj5;
+
+import java.io.File;
+import java.util.Scanner;
+
+/**
+ * @author Chris
+ *
+ */
+public class DataSorter {
+    private int hobby = -1;
+    private int major = -1;
+    private int region = -1;
+    private SongList songList;
+    private Scanner scanner;
+
+    public DataSorter(String surveyAnswers, SongList list) {
+        songList = list;
+        try {
+            scanner = new Scanner(new File(surveyAnswers));
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void sortData() {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+        while (scanner.hasNextLine()) {
+            String[] str = scanner.nextLine().split(",");
+            setInts(str[2], str[3], str[4]);
+            int index = 0;
+            for (int i = 5; i < str.length; i++) {
+                if (str[i].equals("Yes")) {
+                    if (major >= 0) {
+                        songList.getList().get(index).majorArray[0][major]++;
+                    }
+
+                    if (region >= 0) {
+                        songList.getList().get(index).regionArray[0][region]++;
+                    }
+
+                    if (hobby >= 0) {
+                        songList.getList().get(index).hobbyArray[0][hobby]++;
+                    }
+                }
+
+                i++;
+
+                if (str[i].equals("Yes")) {
+                    if (major >= 0) {
+                        songList.getList().get(index).majorArray[1][major]++;
+                    }
+
+                    if (region >= 0) {
+                        songList.getList().get(index).regionArray[1][region]++;
+                    }
+
+                    if (hobby >= 0) {
+                        songList.getList().get(index).hobbyArray[1][hobby]++;
+                    }
+                }
+
+                index++;
+
+            }
+        }
+    }
+
+    private void setInts(String maj, String reg, String hob) {
+        switch (maj) {
+        case "Computer Science":
+            major = 0;
+            break;
+        case "Other Eng":
+            major = 1;
+            break;
+        case "Math or CMDA":
+            major = 2;
+            break;
+        case "Other":
+            major = 3;
+            break;
+        default:
+            major = -1;
+            break;
+        }
+        switch (reg) {
+        case "Northeast":
+            region = 0;
+            break;
+        case "Southeast":
+            region = 1;
+            break;
+        case "Other US":
+            region = 2;
+            break;
+        case "Outside US":
+            region = 3;
+            break;
+        default:
+            region = -1;
+            break;
+        }
+        switch (hob) {
+        case "read":
+            hobby = 0;
+            break;
+        case "art":
+            hobby = 1;
+            break;
+        case "sports":
+            hobby = 2;
+            break;
+        case "music":
+            hobby = 3;
+            break;
+        default:
+            hobby = -1;
+            break;
+        }
+    }
+}
