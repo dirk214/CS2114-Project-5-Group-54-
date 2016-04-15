@@ -1,0 +1,108 @@
+/**
+ * 
+ */
+package prj5;
+
+import student.TestCase;
+
+/**
+ * @author Chris
+ *
+ */
+public class SongListTest extends TestCase {
+    SongList songList;
+    public void setUp()
+    {
+        songList = new SongList("SongList.csv");
+    }
+    
+    public void testGetList()
+    {
+        String title = songList.getList().get(0).getSongTitle();
+        String artist = songList.getList().get(0).getArtistName();
+        String date = songList.getList().get(0).getDate();
+        String genre = songList.getList().get(0).getGenre();
+        
+        assertEquals("All These Things I've Done", title);
+        assertEquals("The Killers", artist);
+        assertEquals("2005", date);
+        assertEquals("alternative", genre);
+        
+        
+        title = songList.getList().get(1).getSongTitle();
+        artist = songList.getList().get(1).getArtistName();
+        date = songList.getList().get(1).getDate();
+        genre = songList.getList().get(1).getGenre();
+        
+        assertEquals("All You Need Is Love", title);
+        assertEquals("The Beatles", artist);
+        assertEquals("1967", date);
+        assertEquals("pop rock", genre);
+        
+        title = songList.getList().getLast().getSongTitle();
+        artist = songList.getList().getLast().getArtistName();
+        date = songList.getList().getLast().getDate();
+        genre = songList.getList().getLast().getGenre();
+        
+        assertEquals("You Can't Always Get What You Want", title);
+        assertEquals("The Rolling Stones", artist);
+        assertEquals("1969", date);
+        assertEquals("pop rock", genre);
+    } 
+    
+    public void testSortByArtistName()
+    {
+        songList.sortByArtistName();
+        String artist = songList.getList().get(0).getArtistName();
+        assertEquals("ABBA", artist);
+        
+        artist = songList.getList().get(1).getArtistName();
+        assertEquals("Adele", artist);
+        
+        artist = songList.getList().getLast().getArtistName();
+        assertEquals("Whitney Houston", artist);
+        
+    }
+    
+    public void testSortBySongTitle()
+    {
+        songList.sortBySongTitle();
+        String title = songList.getList().get(0).getSongTitle();
+        assertEquals("All These Things I've Done", title);
+        
+        title = songList.getList().get(1).getSongTitle();
+        assertEquals("All You Need Is Love", title);
+        
+        title = songList.getList().getLast().getSongTitle();
+        assertEquals("You Can't Always Get What You Want", title);
+        
+    }
+    
+    public void testSortByReleaseYear()
+    {
+        songList.sortByReleaseYear();
+        String year = songList.getList().get(0).getDate();
+        assertEquals("1963", year);
+        
+        year = songList.getList().get(1).getDate();
+        assertEquals("1965", year);
+        
+        year = songList.getList().getLast().getDate();
+        assertEquals("2015", year);
+        
+    }
+    
+    public void testSortByGenre()
+    {
+        songList.sortByGenre();
+        String genre = songList.getList().get(0).getGenre();
+        assertEquals("EDM", genre);
+        
+        genre = songList.getList().get(1).getGenre();
+        assertEquals("R&B", genre);
+        
+        genre = songList.getList().getLast().getGenre();
+        assertEquals("soft rock", genre);
+        
+    }
+}
