@@ -63,17 +63,56 @@ public class SongList {
     
     public void sortBySongTitle()
     {
-        
+        for (int i = 0; i < list.size(); i++) {
+            Song song = list.get(i);
+            int index = i;
+            for (int j = i + 1; j < list.size(); j++) {
+                if (comp.compare(song.getSongTitle(),
+                        list.get(j).getSongTitle()) > 0) {
+                    song = list.get(j);
+                    index = j;
+                }
+            }
+
+            list.remove(index);
+            list.add(i, song);
+        }
     }
     
     public void sortByReleaseYear()
     {
-        
+        for (int i = 0; i < list.size(); i++) {
+            Song song = list.get(i);
+            int index = i;
+            for (int j = i + 1; j < list.size(); j++) {
+                if (comp.compare(song.getDate(),
+                        list.get(j).getDate()) > 0) {
+                    song = list.get(j);
+                    index = j;
+                }
+            }
+
+            list.remove(index);
+            list.add(i, song);
+        }
     }
     
     public void sortByGenre()
     {
-        
+        for (int i = 0; i < list.size(); i++) {
+            Song song = list.get(i);
+            int index = i;
+            for (int j = i + 1; j < list.size(); j++) {
+                if (comp.compare(song.getGenre(),
+                        list.get(j).getGenre()) > 0) {
+                    song = list.get(j);
+                    index = j;
+                }
+            }
+
+            list.remove(index);
+            list.add(i, song);
+        }
     }
 
     private class StringComparator implements Comparator<String> {
