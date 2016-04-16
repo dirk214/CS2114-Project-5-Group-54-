@@ -1,0 +1,27 @@
+package prj5;
+
+public class Input
+{
+
+    public static void main(String[] args)
+    {
+        @SuppressWarnings("unused")
+        DataSorter start;
+        SongList songList;
+        if (args.length != 0)
+        {
+            songList = new SongList("SongListTest2.csv");
+            start = new DataSorter(args[0], songList);
+            start.sortData();
+            GUISongWindow window = new GUISongWindow(songList);
+        }
+        else 
+        {
+            songList = new SongList("SongListTest2.csv");
+            start = new DataSorter("MusicSurveyDataTest2.csv", songList);
+            start.sortData();
+            GUISongWindow window = new GUISongWindow(songList);
+        }
+    }
+
+}
