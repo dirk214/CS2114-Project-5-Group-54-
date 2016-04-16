@@ -35,41 +35,49 @@ public class DataSorter {
         }
         while (scanner.hasNextLine()) {
             String[] str = scanner.nextLine().split(",");
-            setInts(str[2], str[3], str[4]);
-            int index = 0;
-            for (int i = 5; i < str.length; i++) {
-                if (str[i].equals("Yes")) {
-                    if (major >= 0) {
-                        songList.getList().get(index).majorArray[0][major]++;
+            if (str.length > 2) {
+                setInts(str[2], str[3], str[4]);
+                int index = 0;
+                for (int i = 5; i < str.length; i++) {
+                    if (i < str.length && str[i].equals("Yes")) {
+                        if (major >= 0) {
+                            songList.getList()
+                                    .get(index).majorArray[0][major]++;
+                        }
+
+                        if (region >= 0) {
+                            songList.getList()
+                                    .get(index).regionArray[0][region]++;
+                        }
+
+                        if (hobby >= 0) {
+                            songList.getList()
+                                    .get(index).hobbyArray[0][hobby]++;
+                        }
                     }
 
-                    if (region >= 0) {
-                        songList.getList().get(index).regionArray[0][region]++;
+                    i++;
+
+                    if (i < str.length && str[i].equals("Yes")) {
+                        if (major >= 0) {
+                            songList.getList()
+                                    .get(index).majorArray[1][major]++;
+                        }
+
+                        if (region >= 0) {
+                            songList.getList()
+                                    .get(index).regionArray[1][region]++;
+                        }
+
+                        if (hobby >= 0) {
+                            songList.getList()
+                                    .get(index).hobbyArray[1][hobby]++;
+                        }
                     }
 
-                    if (hobby >= 0) {
-                        songList.getList().get(index).hobbyArray[0][hobby]++;
-                    }
+                    index++;
+
                 }
-
-                i++;
-
-                if (str[i].equals("Yes")) {
-                    if (major >= 0) {
-                        songList.getList().get(index).majorArray[1][major]++;
-                    }
-
-                    if (region >= 0) {
-                        songList.getList().get(index).regionArray[1][region]++;
-                    }
-
-                    if (hobby >= 0) {
-                        songList.getList().get(index).hobbyArray[1][hobby]++;
-                    }
-                }
-
-                index++;
-
             }
         }
     }
