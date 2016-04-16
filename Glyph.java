@@ -1,11 +1,14 @@
 package prj5;
 
+import CS2114.Button;
 import CS2114.Shape;
 import CS2114.TextShape;
 import java.awt.Color;
 import java.awt.color.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Glyph
+public class Glyph extends Shape implements ActionListener
 {
     private Shape blackBar;
     
@@ -29,6 +32,10 @@ public class Glyph
     
     private TextShape songArtist;
     
+    private TextShape songYear;
+    
+    private TextShape songGenre;
+    
     private int xCord;
     
     private int yCord;
@@ -51,14 +58,27 @@ public class Glyph
     
     private int greenLengthLiked;
     
-    public Glyph(int xCord, int yCord, int[][] input)
+    //private Song song;
+    
+    private SongWindow window;
+    
+    //private SongList songList;
+    
+    public Glyph(int xCord, int yCord)
     {
-        this.xCord = xCord;
-        this.yCord = yCord;
-        this.input = input;
+        super(xCord, yCord);
+        
+        /**
+        songList = new Songlist(songs);
+        song = new Song();
+        window = new SongWindow(songList);
+        Button sortByGenre = window.sortByGenre;
+        sortByGenre.addActionLister(window);
+        */
         
         blackBar = new Shape(xCord, yCord - 60, 20, 120, Color.BLACK);
         
+        /**
         purpleBarHeard = new Shape(xCord/2 - 20 , yCord - 60, purpleLengthHeard, 30, Color.PINK);
         blueBarHeard = new Shape(xCord/2 - 20, yCord - 30, blueLengthHeard, 30, Color.BLUE);
         yellowBarHeard = new Shape(xCord/2 - 20, yCord , yellowLengthHeard, 30, Color.YELLOW);
@@ -68,9 +88,21 @@ public class Glyph
         blueBarLiked = new Shape(xCord + 20, yCord - 30, blueLengthLiked, 30, Color.BLUE);
         yellowBarLiked = new Shape(xCord + 20, yCord , yellowLengthLiked, 30, Color.YELLOW);
         greenBarLiked = new Shape(xCord + 20, yCord + 30, greenLengthLiked, 30, Color.GREEN);
+        */
+        purpleBarHeard = new Shape(xCord/2 - 20 , yCord - 60, 120, 30, Color.PINK);
+        blueBarHeard = new Shape(xCord/2 - 20, yCord - 30, 120, 30, Color.BLUE);
+        yellowBarHeard = new Shape(xCord/2 - 20, yCord , 120, 30, Color.YELLOW);
+        greenBarHeard = new Shape(xCord/2 - 20, yCord + 30, 120, 30, Color.GREEN);
         
-        songTitle = new TextShape(xCord, yCord, null);
-        songArtist = new TextShape(xCord, yCord, null);
+        purpleBarLiked = new Shape(xCord + 20, yCord - 60, 120, 30, Color.PINK);
+        blueBarLiked = new Shape(xCord + 20, yCord - 30, 120, 30, Color.BLUE);
+        yellowBarLiked = new Shape(xCord + 20, yCord , 120, 30, Color.YELLOW);
+        greenBarLiked = new Shape(xCord + 20, yCord + 30, 120, 30, Color.GREEN);
+       
+        //songTitle = new TextShape(xCord - (song.getSongTitle().length() * 4), yCord - 85, song.getSongTitle());
+        //songArtist = new TextShape(xCord - (song.getArtistName().length() * 4), yCord - 85, song.getArtistName());
+        //songYear = new TextShape(xCord - (song.getDate().length() * 4), yCord -85, song.getDate());
+        //songGenre = new TextShape(xCord - (song.getGenre().length() * 4), yCord -85, song.getGenre());        
     }
     
     public int getX()
@@ -82,15 +114,16 @@ public class Glyph
     {
         return yCord;
     }
-    
-    public int[][] getInput()
+
+    @Override
+    public void actionPerformed(ActionEvent buttonClick) 
     {
-        return input;
+        
     }
     
-    public void updateLengthOfBars(int[][] intput)
+    /**
+    public void updateLengthOfBars()
     {
-        input = this.getInput();
         purpleLengthHeard = input[0][0];
         blueLengthHeard = input[0][1];
         yellowLengthHeard = input[0][2];
@@ -100,9 +133,5 @@ public class Glyph
         yellowLengthLiked = input[1][2];
         greenLengthLiked = input[1][3];
     }
-    
-    public void setXAndY(int xCord, int yCord)
-    {
-        this.moveTo(xCord, yCord);
-    }
+    */
 }
