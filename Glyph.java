@@ -8,7 +8,7 @@ import java.awt.color.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Glyph extends Shape implements ActionListener
+public class Glyph extends Shape //implements ActionListener
 {
     private Shape blackBar;
     
@@ -114,14 +114,14 @@ public class Glyph extends Shape implements ActionListener
     {
         return yCord;
     }
-
+    
+    /**
     @Override
     public void actionPerformed(ActionEvent buttonClick) 
     {
         
     }
-    
-    /**
+
     public void updateLengthOfBars()
     {
         purpleLengthHeard = input[0][0];
