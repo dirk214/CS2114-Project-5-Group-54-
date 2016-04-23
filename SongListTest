@@ -6,16 +6,27 @@ package prj5;
 import student.TestCase;
 
 /**
- * @author Chris
+ * @author Group 54
+ * @version 2016.04.16
+ * Tests the methods of SongList
  *
  */
 public class SongListTest extends TestCase {
+    /**
+     * Creates a new SongList
+     */
     SongList songList;
+    /**
+     * Sets up the initial conditions
+     */
     public void setUp()
     {
         songList = new SongList("SongList.csv");
     }
     
+    /**
+     * Tests the getList() method
+     */
     public void testGetList()
     {
         String title = songList.getList().get(0).getSongTitle();
@@ -50,6 +61,9 @@ public class SongListTest extends TestCase {
         assertEquals("pop rock", genre);
     } 
     
+    /**
+     * Tests the sortByArtistName() method
+     */
     public void testSortByArtistName()
     {
         songList.sortByArtistName();
@@ -64,6 +78,9 @@ public class SongListTest extends TestCase {
         
     }
     
+    /**
+     * Tests the sortBySongTitle() method
+     */
     public void testSortBySongTitle()
     {
         songList.sortBySongTitle();
@@ -78,6 +95,9 @@ public class SongListTest extends TestCase {
         
     }
     
+    /**
+     * Tests the sortByReleaseYear() method
+     */
     public void testSortByReleaseYear()
     {
         songList.sortByReleaseYear();
@@ -92,6 +112,9 @@ public class SongListTest extends TestCase {
         
     }
     
+    /**
+     * Tests the sortByGenre() method
+     */
     public void testSortByGenre()
     {
         songList.sortByGenre();
