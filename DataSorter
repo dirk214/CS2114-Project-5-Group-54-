@@ -7,7 +7,9 @@ import java.io.File;
 import java.util.Scanner;
 
 /**
- * @author Chris
+ * @author Group 54
+ * @version 2016.04.16 Updates each song's hobby/major/region heard and liked
+ *          counts
  *
  */
 public class DataSorter {
@@ -17,6 +19,14 @@ public class DataSorter {
     private SongList songList;
     private Scanner scanner;
 
+    /**
+     * Creates a new DataSorter
+     * 
+     * @param surveyAnswers
+     *            A list of survey answers
+     * @param list
+     *            A SongList
+     */
     public DataSorter(String surveyAnswers, SongList list) {
         songList = list;
         try {
@@ -29,110 +39,160 @@ public class DataSorter {
 
     }
 
+    /**
+     * Updates each song's heard/liked count
+     */
     public void sortData() {
-        if (scanner.hasNextLine()) {
-            scanner.nextLine();
-        }
+
+        scanner.nextLine();
+
         while (scanner.hasNextLine()) {
             String[] str = scanner.nextLine().split(",");
             if (str.length > 2) {
                 setInts(str[2], str[3], str[4]);
                 int index = 0;
-                for (int i = 5; i < str.length; i++) {
-                    if (i < str.length && str[i].equals("Yes")) {
-                        if (major >= 0) {
+                for (int i = 5; i < str.length
+                        && index < songList.getList().size(); i++) {
+                    if (major >= 0) {
+                        if (str[i].equals("Yes")) {
+
                             songList.getList()
-                                    .get(index).majorArray[0][major]++;
+                                        .get(index).majorArray[0][major]++;
                         }
 
-                        if (region >= 0) {
-                            songList.getList()
-                                    .get(index).regionArray[0][region]++;
-                        }
+                        if (!str[i].equals("")) {
 
-                        if (hobby >= 0) {
                             songList.getList()
-                                    .get(index).hobbyArray[0][hobby]++;
+                                    .get(index).majorTotArray[0][major]++;
+                        }
+                    }
+
+                    if (region >= 0) {
+                        if (str[i].equals("Yes")) {
+                            songList.getList()
+                                        .get(index).regionArray[0][region]++;
+                        }
+                        if (!str[i].equals("")) {
+                            songList.getList()
+                                    .get(index).regionTotArray[0][region]++;
+                        }
+                    }
+
+                    if (hobby >= 0) {
+                        if (str[i].equals("Yes")) {
+                            songList.getList()
+                                        .get(index).hobbyArray[0][hobby]++;
+                        }
+                        if (!str[i].equals("")) {
+                            songList.getList()
+                                        .get(index).hobbyTotArray[0][hobby]++;
                         }
                     }
 
                     i++;
 
-                    if (i < str.length && str[i].equals("Yes")) {
-                        if (major >= 0) {
+                    if (major >= 0 && str.length > i) {
+                        if (str[i].equals("Yes")) {
+
                             songList.getList()
                                     .get(index).majorArray[1][major]++;
                         }
-
-                        if (region >= 0) {
+                        if (!str[i].equals("")) {
                             songList.getList()
-                                    .get(index).regionArray[1][region]++;
-                        }
-
-                        if (hobby >= 0) {
-                            songList.getList()
-                                    .get(index).hobbyArray[1][hobby]++;
+                                    .get(index).majorTotArray[1][major]++;
                         }
                     }
 
-                    index++;
+                    if (region >= 0 && str.length > i) {
+                        if (str[i].equals("Yes")) {
+                            songList.getList()
+                                    .get(index).regionArray[1][region]++;
+                        }
+                        if (!str[i].equals("")) {
+                            songList.getList()
+                                    .get(index).regionTotArray[1][region]++;
+                        }
+                    }
 
+                    if (hobby >= 0 && str.length > i) {
+                        if (str[i].equals("Yes")) {
+                            songList.getList()
+                                    .get(index).hobbyArray[1][hobby]++;
+                        }
+                        if (!str[i].equals("")) {
+                            songList.getList()
+                                    .get(index).hobbyTotArray[1][hobby]++;
+                        }
+                    }
+                    index++;
                 }
+
             }
         }
     }
 
+    /**
+     * Adjusts the current major/hobby/region
+     * 
+     * @param maj
+     *            Major
+     * @param reg
+     *            Region
+     * @param hob
+     *            Hobby
+     */
     private void setInts(String maj, String reg, String hob) {
         switch (maj) {
-        case "Computer Science":
-            major = 0;
-            break;
-        case "Other Eng":
-            major = 1;
-            break;
-        case "Math or CMDA":
-            major = 2;
-            break;
-        case "Other":
-            major = 3;
-            break;
-        default:
-            major = -1;
-            break;
+            case "Computer Science":
+                major = 0;
+                break;
+            case "Other Eng":
+                major = 1;
+                break;
+            case "Math or CMDA":
+                major = 2;
+                break;
+            case "Other":
+                major = 3;
+                break;
+            default:
+                major = -1;
+                break;
         }
         switch (reg) {
-        case "Northeast":
-            region = 0;
-            break;
-        case "Southeast":
-            region = 1;
-            break;
-        case "Other US":
-            region = 2;
-            break;
-        case "Outside US":
-            region = 3;
-            break;
-        default:
-            region = -1;
-            break;
+            case "Northeast":
+                region = 0;
+                break;
+            case "Southeast":
+                region = 1;
+                break;
+            case "Other US":
+                region = 2;
+                break;
+            case "Outside US":
+                region = 3;
+                break;
+            default:
+                region = -1;
+                break;
         }
         switch (hob) {
-        case "read":
-            hobby = 0;
-            break;
-        case "art":
-            hobby = 1;
-            break;
-        case "sports":
-            hobby = 2;
-            break;
-        case "music":
-            hobby = 3;
-            break;
-        default:
-            hobby = -1;
-            break;
+            case "reading":
+                hobby = 0;
+                break;
+            case "art":
+                hobby = 1;
+                break;
+            case "sports":
+                hobby = 2;
+                break;
+            case "music":
+                hobby = 3;
+                break;
+            default:
+                hobby = -1;
+                break;
         }
     }
+
 }
