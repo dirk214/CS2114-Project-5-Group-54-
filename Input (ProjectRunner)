@@ -1,26 +1,76 @@
 package prj5;
 
-public class Input
-{
+/**
+ * Runs the project
+ * @author Group 54
+ * @version 2016.04.16
+ *
+ */
+public class Input {
 
-    public static void main(String[] args)
-    {
-        @SuppressWarnings("unused")
+    public static void main(String[] args) {
         DataSorter start;
         SongList songList;
-        if (args.length != 0)
-        {
-            songList = new SongList("SongListTest2.csv");
+        if (args.length != 0) {
+            songList = new SongList(args[1]);
             start = new DataSorter(args[0], songList);
             start.sortData();
             GUISongWindow window = new GUISongWindow(songList);
+            printData(songList);
+
         }
-        else 
+        else
         {
-            songList = new SongList("SongListTest2.csv");
-            start = new DataSorter("MusicSurveyDataTest2.csv", songList);
+            songList = new SongList("SongListTest1.csv");
+            start = new DataSorter("MusicSurveyDataTest1.csv", songList);
             start.sortData();
             GUISongWindow window = new GUISongWindow(songList);
+            printData(songList);
+        }
+
+    }
+
+    private static void printData(SongList list) {
+        for (int k = 0; k < 2; k++)
+        {
+            if (k == 0)
+            {
+                list.sortByGenre();
+            }
+            else
+            {
+                list.sortBySongTitle();
+            }
+        for (int i = 0; i < list.getList().size(); i++) {
+            System.out.print(
+                    "Song Title: " + list.getList().get(i).getSongTitle()+ "\n");
+            System.out.print(
+                    "Song Artist: " + list.getList().get(i).getArtistName() + "\n");
+            System.out
+                    .print("Song Genre: " + list.getList().get(i).getGenre() + "\n");
+            System.out.print("Song Year: " + list.getList().get(i).getDate() + "\n");
+            System.out.print("Heard" + "\n");
+            System.out.print("reading:"
+                    + list.getList().get(i).getHeardPercent("read") + " ");
+            System.out.print(
+                    "art:" + list.getList().get(i).getHeardPercent("art") + " ");
+            System.out.print("sports:"
+                    + list.getList().get(i).getHeardPercent("sports") + " ");
+            System.out.print(
+                    "music:" + list.getList().get(i).getHeardPercent("music") + "\n");
+            System.out.print("Likes" + "\n");
+            System.out.print("reading:"
+                    + list.getList().get(i).getLikedPercent("read") + " ");
+            System.out.print(
+                    "art:" + list.getList().get(i).getLikedPercent("art") + " ");
+            System.out.print("sports:"
+                    + list.getList().get(i).getLikedPercent("sports") + " ");
+            System.out.print(
+                    ("music:" + list.getList().get(i).getLikedPercent("music")));
+                System.out.print("\n\n");
+        }
+                
+            
         }
     }
 
