@@ -1,7 +1,13 @@
 package prj5;
 
 import student.TestCase;
-
+/**
+ * 
+ * @author Group 54
+ * @version 2016.04.16
+ * Tests LinkedList methods
+ *
+ */
 public class LinkedListTest extends TestCase
 {
     //fields
@@ -270,6 +276,33 @@ public class LinkedListTest extends TestCase
         list.add(string3);
         list.add(string4);
         assertEquals("{My, Mother, is a, fish.}", list.toString());
+    }
+    
+    /**
+     * Tests removing the first item in a list
+     */
+    public void testRemoveHead()
+    {
+        list.add(string1);
+        list.add(string2);
+        list.add(string3);
+        assertTrue(list.remove(string1));
+        assertTrue(list.remove(string3));
+        
+        assertTrue(list.remove(0));
+
+    }
+    
+    /**
+     * Tests removing an item in a list of 2+ items
+     */
+    public void testRemove2Size()
+    {
+        list.add(string1);
+        list.add(string2);
+        list.add(string3);
+        
+        assertTrue(list.remove(string2));
     }
 }
 
