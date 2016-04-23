@@ -9,41 +9,60 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
- * @author Chris
+ * @author Group 54
+ * @version 2016.04.16
+ * Creates a list of songs
  *
  */
 public class SongList {
-    private Scanner scanner;
+
+    /**
+     * Creates a new linked list
+     */
     private LinkedList<Song> list;
+    /**
+     * Creates a new Comparator
+     */
     private StringComparator comp;
 
+    /**
+     * Creates a new SongList with a specified string file
+     * @param songs The specified file
+     */
     public SongList(String songs) {
         comp = new StringComparator();
+        Scanner scanner;
         try {
             scanner = new Scanner(new File(songs));
+            list = new LinkedList<Song>();
+
+
+            scanner.nextLine();
+            
+            while (scanner.hasNextLine()) {
+                String[] str = scanner.nextLine().split(",");
+                Song song = new Song(str[1], str[0], str[3], str[2]);
+                list.add(song);
+            }
         }
 
         catch (Exception e) {
             e.printStackTrace();
         }
-        list = new LinkedList<Song>();
 
-        if (scanner.hasNextLine())
-        {
-            scanner.nextLine();
-        }
-        
-        while (scanner.hasNextLine()) {
-            String[] str = scanner.nextLine().split(",");
-            Song song = new Song(str[1], str[0], str[3], str[2]);
-            list.add(song);
-        }
     }
 
+    /**
+     * Returns the Linked List
+     * @return the list
+     */
     public LinkedList<Song> getList() {
         return list;
     }
 
+    /**
+     * Sorts the songs by the artist's name
+     */
     public void sortByArtistName() {
         for (int i = 0; i < list.size(); i++) {
             Song song = list.get(i);
@@ -61,6 +80,9 @@ public class SongList {
         }
     }
     
+    /**
+     * Sorts the songs by their titles
+     */
     public void sortBySongTitle()
     {
         for (int i = 0; i < list.size(); i++) {
@@ -79,6 +101,9 @@ public class SongList {
         }
     }
     
+    /**
+     * Sorts the songs by their release years
+     */
     public void sortByReleaseYear()
     {
         for (int i = 0; i < list.size(); i++) {
@@ -97,6 +122,9 @@ public class SongList {
         }
     }
     
+    /**
+     * Sorts the songs by their genre
+     */
     public void sortByGenre()
     {
         for (int i = 0; i < list.size(); i++) {
@@ -115,6 +143,13 @@ public class SongList {
         }
     }
 
+    /**
+     * 
+     * @author Group 54
+     * @version 2016.04.16
+     * Compares Strings
+     *
+     */
     private class StringComparator implements Comparator<String> {
 
         @Override
