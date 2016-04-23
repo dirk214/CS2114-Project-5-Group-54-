@@ -6,52 +6,78 @@ package prj5;
 import student.TestCase;
 
 /**
- * @author Chris
+ * @author Group 54
+ * @version 2016.04.16
+ * Tests the methods of Song
  *
  */
 public class SongTest extends TestCase {
+    /**
+     * Creates a new Song
+     */
     Song song;
-    public void setUp()
-    {
+
+    /**
+     * Sets up the initial conditions
+     */
+    public void setUp() {
         song = new Song("Green Day", "Holiday", "punk rock", "2004");
         song.hobbyArray[0][1]++;
+        song.hobbyTotArray[0][1]++;
         song.hobbyArray[1][3]++;
+        song.hobbyTotArray[1][3]++;
         song.majorArray[0][2]++;
+        song.majorTotArray[0][2]++;
         song.majorArray[1][3]++;
+        song.majorTotArray[1][3]++;
         song.regionArray[0][1]++;
+        song.regionTotArray[0][1]++;
         song.regionArray[1][0]++;
+        song.regionTotArray[1][0]++;
     }
-    
-    public void testGetArtistName()
-    {
+
+    /**
+     * Tests the getArtistName() method
+     */
+    public void testGetArtistName() {
         assertEquals("Green Day", song.getArtistName());
     }
-    
-    public void testGetSongTitle()
-    {
+
+    /**
+     * Tests the getSongTitle() method
+     */
+    public void testGetSongTitle() {
         assertEquals("Holiday", song.getSongTitle());
     }
-    
-    public void testGetGenre()
-    {
+
+    /**
+     * Tests the getGenre() method
+     */
+    public void testGetGenre() {
         assertEquals("punk rock", song.getGenre());
     }
-    
-    public void testGetDate()
-    {
+
+    /**
+     * Tests the getDate() method
+     */
+    public void testGetDate() {
         assertEquals("2004", song.getDate());
     }
-    
-    public void testGetHeard()
-    {
-        assertEquals(1, song.getHeard("Art"));
-        assertEquals(1, song.getHeard("Math/CMDA"));
+
+    /**
+     * Tests the getHeard() method
+     */
+    public void testGetHeard() {
+        assertEquals(1, song.getHeard("art"));
+        assertEquals(1, song.getHeard("Math or CMDA"));
         assertEquals(1, song.getHeard("Southeast US"));
-        assertEquals(0, song.getHeard("Sports"));
+        assertEquals(0, song.getHeard("sports"));
     }
-    
-    public void testGetHeardException()
-    {
+
+    /**
+     * Tests the exception in getHeard()
+     */
+    public void testGetHeardException() {
         Exception exception = null;
         try {
             song.getHeard("History");
@@ -59,32 +85,179 @@ public class SongTest extends TestCase {
         }
         catch (Exception e)
         {
+            
             exception = e;
         }
         assertTrue("getHeard() is throwing the wrong type of exceptions",
                 exception instanceof IllegalArgumentException);
     }
-    
-    public void testGetLikes()
-    {
-        assertEquals(1, song.getLikes("Music"));
+
+    /**
+     * Tests the getLikes() method
+     */
+    public void testGetLikes() {
+        assertEquals(1, song.getLikes("music"));
         assertEquals(1, song.getLikes("Other"));
         assertEquals(1, song.getLikes("Northeast US"));
-        assertEquals(0, song.getLikes("Sports"));
+        assertEquals(0, song.getLikes("sports"));
     }
-    
-    public void testGetLikesException()
-    {
+
+    /**
+     * Tests the exception of getLikes()
+     */
+    public void testGetLikesException() {
         Exception exception = null;
         try {
             song.getLikes("History");
             fail("getLikes() is not throwing an exception when it should");
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             exception = e;
         }
         assertTrue("getLikes() is throwing the wrong type of exceptions",
+                exception instanceof IllegalArgumentException);
+    }
+    
+    /**
+     * Tests the various arrays of a song to make sure
+     * they return the correct values
+     */
+    public void testArrays()
+    {
+        assertEquals(0, song.getHeard("read"));
+        assertEquals(1, song.getHeard("art"));
+        assertEquals(0, song.getHeard("sports"));
+        assertEquals(0, song.getHeard("music"));
+        assertEquals(0, song.getHeard("Computer Science"));
+        assertEquals(0, song.getHeard("Other Eng"));
+        assertEquals(1, song.getHeard("Math or CMDA"));
+        assertEquals(0, song.getHeard("Other"));
+        assertEquals(0, song.getHeard("Northeast US"));
+        assertEquals(1, song.getHeard("Southeast US"));
+        assertEquals(0, song.getHeard("Other US"));
+        assertEquals(0, song.getHeard("Outside US"));
+        
+        assertEquals(0, song.getLikes("read"));
+        assertEquals(0, song.getLikes("art"));
+        assertEquals(0, song.getLikes("sports"));
+        assertEquals(1, song.getLikes("music"));
+        assertEquals(0, song.getLikes("Computer Science"));
+        assertEquals(0, song.getLikes("Other Eng"));
+        assertEquals(0, song.getLikes("Math or CMDA"));
+        assertEquals(1, song.getLikes("Other"));
+        assertEquals(1, song.getLikes("Northeast US"));
+        assertEquals(0, song.getLikes("Southeast US"));
+        assertEquals(0, song.getLikes("Other US"));
+        assertEquals(0, song.getLikes("Outside US"));
+        
+        assertEquals(0, song.getHeardPercent("read"));
+        song.hobbyTotArray[0][0]++;
+        assertEquals(0, song.getHeardPercent("read"));
+        assertEquals(100, song.getHeardPercent("art"));
+        song.hobbyTotArray[0][1]--;
+        assertEquals(0, song.getHeardPercent("art"));
+        assertEquals(0, song.getHeardPercent("sports"));
+        song.hobbyTotArray[0][2]++;
+        assertEquals(0, song.getHeardPercent("sports"));
+        assertEquals(0, song.getHeardPercent("music"));
+        song.hobbyTotArray[0][3]++;
+        assertEquals(0, song.getHeardPercent("music"));
+        assertEquals(0, song.getHeardPercent("Computer Science"));
+        song.majorTotArray[0][0]++;
+        assertEquals(0, song.getHeardPercent("Computer Science"));
+        assertEquals(0, song.getHeardPercent("Other Eng"));
+        song.majorTotArray[0][1]++;
+        assertEquals(0, song.getHeardPercent("Other Eng"));
+        assertEquals(100, song.getHeardPercent("Math or CMDA"));
+        song.majorTotArray[0][2]--;
+        assertEquals(0, song.getHeardPercent("Math or CMDA"));
+        assertEquals(0, song.getHeardPercent("Other"));
+        song.majorTotArray[0][3]++;
+        assertEquals(0, song.getHeardPercent("Other"));
+        assertEquals(0, song.getHeardPercent("Northeast US"));
+        song.regionTotArray[0][0]++;
+        assertEquals(0, song.getHeardPercent("Northeast US"));
+        assertEquals(100, song.getHeardPercent("Southeast US"));
+        song.regionTotArray[0][1]--;
+        assertEquals(0, song.getHeardPercent("Southeast US"));
+        assertEquals(0, song.getHeardPercent("Other US"));
+        song.regionTotArray[0][2]++;
+        assertEquals(0, song.getHeardPercent("Other US"));
+        assertEquals(0, song.getHeardPercent("Outside US"));
+        song.regionTotArray[0][3]++;
+        assertEquals(0, song.getHeardPercent("Outside US"));
+        
+        assertEquals(0, song.getLikedPercent("read"));
+        song.hobbyTotArray[1][0]++;
+        assertEquals(0, song.getLikedPercent("read"));
+        assertEquals(0, song.getLikedPercent("art"));
+        song.hobbyTotArray[1][1]++;
+        assertEquals(0, song.getLikedPercent("art"));
+        assertEquals(0, song.getLikedPercent("sports"));
+        song.hobbyTotArray[1][2]++;
+        assertEquals(0, song.getLikedPercent("sports"));
+        assertEquals(100, song.getLikedPercent("music"));
+        song.hobbyTotArray[1][3]--;
+        assertEquals(0, song.getLikedPercent("music"));
+        assertEquals(0, song.getLikedPercent("Computer Science"));
+        song.majorTotArray[1][0]++;
+        assertEquals(0, song.getLikedPercent("Computer Science"));
+        assertEquals(0, song.getLikedPercent("Other Eng"));
+        song.majorTotArray[1][1]++;
+        assertEquals(0, song.getLikedPercent("Other Eng"));
+        assertEquals(0, song.getLikedPercent("Math or CMDA"));
+        song.majorTotArray[1][2]++;
+        assertEquals(0, song.getLikedPercent("Math or CMDA"));
+        assertEquals(100, song.getLikedPercent("Other"));
+        song.majorTotArray[1][3]--;
+        assertEquals(0, song.getLikedPercent("Other"));
+        assertEquals(100, song.getLikedPercent("Northeast US"));
+        song.regionTotArray[1][0]--;
+        assertEquals(0, song.getLikedPercent("Northeast US"));
+        assertEquals(0, song.getLikedPercent("Southeast US"));
+        song.regionTotArray[1][1]++;
+        assertEquals(0, song.getLikedPercent("Southeast US"));
+        assertEquals(0, song.getLikedPercent("Other US"));
+        song.regionTotArray[1][2]++;
+        assertEquals(0, song.getLikedPercent("Other US"));
+        assertEquals(0, song.getLikedPercent("Outside US"));
+        song.regionTotArray[1][3]++;
+        assertEquals(0, song.getLikedPercent("Outside US"));
+        
+
+    }
+    
+    /**
+     * Tests the exception of getHeardPercent
+     */
+    public void testGetHeardPercentException() {
+        Exception exception = null;
+        try {
+            song.getHeardPercent("History");
+            fail("getHeardPercent() is not throwing an exception"
+                    + " when it should");
+        }
+        catch (Exception e) {
+            exception = e;
+        }
+        assertTrue("getHeardPercent() is throwing the wrong type of exceptions",
+                exception instanceof IllegalArgumentException);
+    }
+    
+   /**
+    * Tests the exception of getLikedPercent
+    */
+    public void testGetLikedPercentException() {
+        Exception exception = null;
+        try {
+            song.getLikedPercent("History");
+            fail("getLikedPercent() is not throwing an exception"
+                    + " when it should");
+        }
+        catch (Exception e) {
+            exception = e;
+        }
+        assertTrue("getLikedPercent() is throwing the wrong type of exceptions",
                 exception instanceof IllegalArgumentException);
     }
 }
