@@ -6,25 +6,138 @@ package prj5;
 import student.TestCase;
 
 /**
- * @author Chris
+ * @author Group 54
+ * @version 2016.04.16
+ * Tests the DataSorter methods
  *
  */
 public class DataSorterTest extends TestCase {
+    /**
+     * Creates a new DataSorter
+     */
     DataSorter sorter;
+    /**
+     * Creates a new SongList
+     */
     SongList songList;
 
-// Note: This uses my own personal test files. I've uploaded those in case anyone wants to use them.
+    /**
+     * Sets up initial conditions
+     */
     public void setUp() {
         songList = new SongList("testList.csv");
         sorter = new DataSorter("TestSurvey.csv", songList);
     }
 
+    /**
+     * Tests the sortData() method
+     */
     public void testSortData() {
+        assertEquals(5, songList.getList().size());
+        assertEquals(0, songList.getList().get(0).getHeard("music"));
+        assertEquals(0, songList.getList().get(1).getLikes("Computer Science"));
+        assertEquals(0, songList.getList().get(0).getLikes("Southeast US"));
+        assertEquals(0, songList.getList().get(4).getHeard("Southeast US"));
         sorter.sortData();
         assertEquals(1, songList.getList().get(0).getHeard("music"));
         assertEquals(2, songList.getList().get(1).getLikes("Computer Science"));
         assertEquals(2, songList.getList().get(0).getLikes("Southeast US"));
         assertEquals(4, songList.getList().get(4).getHeard("Southeast US"));
+
+        // First song major
+        assertEquals(1, songList.getList().get(0).getHeard("Math or CMDA"));
+        assertEquals(1, songList.getList().get(0).getLikes("Math or CMDA"));
+        assertEquals(0, songList.getList().get(0).getHeard("Other Eng"));
+        assertEquals(0, songList.getList().get(0).getLikes("Other Eng"));
+        assertEquals(1, songList.getList().get(0).getHeard("Computer Science"));
+        assertEquals(1, songList.getList().get(0).getLikes("Computer Science"));
+        assertEquals(0, songList.getList().get(0).getHeard("Other"));
+        assertEquals(0, songList.getList().get(0).getLikes("Other"));
+        // First song hobby
+        assertEquals(0, songList.getList().get(0).getHeard("read"));
+        assertEquals(0, songList.getList().get(0).getLikes("read"));
+        assertEquals(1, songList.getList().get(0).getHeard("sports"));
+        assertEquals(1, songList.getList().get(0).getLikes("sports"));
+        assertEquals(0, songList.getList().get(0).getHeard("art"));
+        assertEquals(0, songList.getList().get(0).getLikes("art"));
+        assertEquals(1, songList.getList().get(0).getHeard("music"));
+        assertEquals(1, songList.getList().get(0).getLikes("music"));
+        // First song region
+        assertEquals(0, songList.getList().get(0).getHeard("Northeast US"));
+        assertEquals(0, songList.getList().get(0).getLikes("Northeast US"));
+        assertEquals(2, songList.getList().get(0).getHeard("Southeast US"));
+        assertEquals(2, songList.getList().get(0).getLikes("Southeast US"));
+        assertEquals(0, songList.getList().get(0).getHeard("Other US"));
+        assertEquals(0, songList.getList().get(0).getLikes("Other US"));
+        assertEquals(0, songList.getList().get(0).getHeard("Outside US"));
+        assertEquals(0, songList.getList().get(0).getLikes("Outside US"));
+        // Last song major
+        assertEquals(1, songList.getList().get(4).getHeard("Math or CMDA"));
+        assertEquals(0, songList.getList().get(4).getLikes("Math or CMDA"));
+        assertEquals(1, songList.getList().get(4).getHeard("Other Eng"));
+        assertEquals(0, songList.getList().get(4).getLikes("Other Eng"));
+        assertEquals(2, songList.getList().get(4).getHeard("Computer Science"));
+        assertEquals(2, songList.getList().get(4).getLikes("Computer Science"));
+        assertEquals(1, songList.getList().get(4).getHeard("Other"));
+        assertEquals(1, songList.getList().get(4).getLikes("Other"));
+        // Last song hobby
+        assertEquals(1, songList.getList().get(4).getHeard("read"));
+        assertEquals(1, songList.getList().get(4).getLikes("read"));
+        assertEquals(2, songList.getList().get(4).getHeard("sports"));
+        assertEquals(1, songList.getList().get(4).getLikes("sports"));
+        assertEquals(1, songList.getList().get(4).getHeard("art"));
+        assertEquals(1, songList.getList().get(4).getLikes("art"));
+        assertEquals(1, songList.getList().get(4).getHeard("music"));
+        assertEquals(0, songList.getList().get(4).getLikes("music"));
+        // Last song region
+        assertEquals(1, songList.getList().get(4).getHeard("Northeast US"));
+        assertEquals(0, songList.getList().get(4).getLikes("Northeast US"));
+        assertEquals(4, songList.getList().get(4).getHeard("Southeast US"));
+        assertEquals(3, songList.getList().get(4).getLikes("Southeast US"));
+        assertEquals(0, songList.getList().get(4).getHeard("Other US"));
+        assertEquals(0, songList.getList().get(4).getLikes("Other US"));
+        assertEquals(0, songList.getList().get(4).getHeard("Outside US"));
+        assertEquals(0, songList.getList().get(4).getLikes("Outside US"));
+
+    }
+
+    /**
+     * Tests the sortData() method on an empty list
+     */
+    public void testEmptyList() {
+        SongList list = new SongList("Empty Song List.csv");
+        DataSorter dSorter = new DataSorter("Empty Survey.csv", songList);
+        dSorter.sortData();
+        assertEquals(0, list.getList().size());
+
+        DataSorter ds = new DataSorter("Completely blank.csv", songList);
+        ds.sortData();
+        
+        SongList sList = new SongList("Empty Song List.csv");
+        DataSorter data = new DataSorter("Zero.csv", sList);
+        data.sortData();
+    }
+
+    /**
+     * Tests the sortData() method on a full list
+     */
+    public void testFullList() {
+        SongList list = new SongList("SongList.csv");
+        DataSorter dSorter = new DataSorter("MusicSurveyData.csv", list);
+        dSorter.sortData();
+        assertEquals(59, list.getList().size());
+    }
+    
+    /**
+     * Tests other lists
+     */
+    public void testOtherLists()
+    {
+        SongList list = new SongList("SimpleList.csv");
+        DataSorter dSorter = new DataSorter("SimpleSurvey.csv", list);
+        dSorter.sortData();
+        assertEquals(1, list.getList().get(1).getHeard("Outside US"));
+        assertEquals(1, list.getList().get(1).getHeard("Other US"));
     }
 
 }
