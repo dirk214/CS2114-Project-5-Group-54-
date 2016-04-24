@@ -167,8 +167,8 @@ public class GUISongWindow {
                     int[][] hobbyArray = ourList.getList().get(listPos).hobbyArray;
                     String title = ourList.getList().get(listPos).getSongTitle();
                     String author = ourList.getList().get(listPos).getArtistName();
-                    GUIGlyph hobbyGUIGlyph = new GUIGlyph(100 + 200 * (listPos % 3),
-                            100 + 100 * ((listPos % 9) / 3), hobbyArray, mainWindow, title,
+                    GUIGlyph hobbyGUIGlyph = new GUIGlyph(100 + 200 * ((listPos + 1) % 3),
+                            100 + 100 * (((listPos + 1) % 9) / 3), hobbyArray, mainWindow, title,
                             author);
                     
                     GUIGlyphs.add(hobbyGUIGlyph);
