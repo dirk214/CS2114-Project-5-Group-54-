@@ -15,7 +15,7 @@ import CS2114.Window;
 public class GUISongWindow {
     // Fields:
 
-    LinkedList<Glyph> glyphs;
+    LinkedList<GUIGlyph> GUIGlyphs;
     int listPos = 0;
     
     /**
@@ -77,6 +77,8 @@ public class GUISongWindow {
      * 
      */
     SongList ourList;
+    
+    String sort;
 
     /**
      * 
@@ -92,8 +94,10 @@ public class GUISongWindow {
 
         // SongList Instantiation.
         ourList = list;
+        
+        sort = new String("");
 
-        glyphs = new LinkedList<Glyph>();
+        GUIGlyphs = new LinkedList<GUIGlyph>();
         
         mainKey = new Key(650, 100);
 
@@ -153,7 +157,35 @@ public class GUISongWindow {
      * 
      */
     public void clickedNext(Button nextButton) {
-
+        if (sort.equals("hobby"))
+        {
+            int index = listPos;
+            removeGUIGlyphs();
+            for (int i = index; i < index + 9; i++) {
+                System.out.println(listPos);
+                if (listPos < ourList.getList().size()) {
+                    int[][] hobbyArray = ourList.getList().get(listPos).hobbyArray;
+                    String title = ourList.getList().get(listPos).getSongTitle();
+                    String author = ourList.getList().get(listPos).getArtistName();
+                    GUIGlyph hobbyGUIGlyph = new GUIGlyph(100 + 200 * (listPos % 3),
+                            100 + 100 * ((listPos % 9) / 3), hobbyArray, mainWindow, title,
+                            author);
+                    
+                    GUIGlyphs.add(hobbyGUIGlyph);
+                    listPos++;
+                }
+            }
+        }
+        
+        else if (sort.equals("major"))
+        {
+            
+        }
+        
+        else if (sort.equals("region"))
+        {
+            
+        }
     }
 
     /**
@@ -168,13 +200,13 @@ public class GUISongWindow {
      */
     public void clickedSortByGenre(Button genreButton) {
         ourList.sortByGenre();
-        createFirstGlyphs();
+        createFirstGUIGlyphs();
         for (int i = 8; i >= 0; i--)
         {
-            if (listPos - i < ourList.getList().size() && listPos - i < glyphs.size())
+            if (listPos - i < ourList.getList().size() && listPos - i < GUIGlyphs.size())
             {
             String genre = ourList.getList().get(listPos - i).getGenre();
-            glyphs.get(listPos - i).setBottomText(genre);
+            GUIGlyphs.get(listPos - i).setBottomText(genre);
             }
         }
     }
@@ -183,7 +215,7 @@ public class GUISongWindow {
      * 
      */
     public void clickedSortBySongTitle(Button titleButton) {
-        removeGlyphs();
+        removeGUIGlyphs();
         ourList.sortBySongTitle();
     }
 
@@ -198,19 +230,20 @@ public class GUISongWindow {
      * 
      */
     public void clickedRepresentHobby(Button hobbyButton) {
-        removeGlyphs();
-        createFirstGlyphs();
+        sort = "hobby";
+        removeGUIGlyphs();
+        createFirstGUIGlyphs();
         mainKey.updateKey("Hobby Legend", "Read", "Art", "Sports", "Music");
         for (int i = 8; i >= 0; i--) {
             if (listPos - i < ourList.getList().size()) {
                 int[][] hobbyArray = ourList.getList().get(listPos - i).hobbyArray;
                 String title = ourList.getList().get(listPos - i).getSongTitle();
                 String author = ourList.getList().get(listPos - i).getArtistName();
-                Glyph hobbyGlyph = new Glyph(100 + 200 * ((listPos - i + 3) % 3),
+                GUIGlyph hobbyGUIGlyph = new GUIGlyph(100 + 200 * ((listPos - i + 3) % 3),
                         100 + 100 * ((listPos - i) / 3), hobbyArray, mainWindow, title,
                         author);
                 
-                glyphs.add(hobbyGlyph);
+                GUIGlyphs.add(hobbyGUIGlyph);
             }
         }
         checkButtons();
@@ -237,20 +270,20 @@ public class GUISongWindow {
 
     }
 
-    private void removeGlyphs()
+    private void removeGUIGlyphs()
     {
-        int amtGlyphs = glyphs.size();
+        int amtGUIGlyphs = GUIGlyphs.size();
         
-        for (int i = 0; i < amtGlyphs; i++)
+        for (int i = 0; i < amtGUIGlyphs; i++)
         {
-            int glyphComponents = glyphs.get(0).getGlyphList().size();
-            for (int k = 0; k < glyphComponents; k++)
+            int GUIGlyphComponents = GUIGlyphs.get(0).getGUIGlyphList().size();
+            for (int k = 0; k < GUIGlyphComponents; k++)
             {
-                mainWindow.removeShape(glyphs.get(0).getGlyphList().get(0));
-                glyphs.get(0).getGlyphList().remove(0);
+                mainWindow.removeShape(GUIGlyphs.get(0).getGUIGlyphList().get(0));
+                GUIGlyphs.get(0).getGUIGlyphList().remove(0);
             }
             
-            glyphs.remove(0);
+            GUIGlyphs.remove(0);
         }
         
         
@@ -279,7 +312,7 @@ public class GUISongWindow {
         }
     }
     
-    private void createFirstGlyphs()
+    private void createFirstGUIGlyphs()
     {
         if (listPos == 0)
         {
