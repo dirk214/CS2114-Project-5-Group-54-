@@ -179,12 +179,42 @@ public class GUISongWindow {
         
         else if (sort.equals("major"))
         {
-            
+            int index = listPos;
+            removeGUIGlyphs();
+            for (int i = index; i < index + 9; i++) {
+                System.out.println(listPos);
+                if (listPos < ourList.getList().size()) {
+                    int[][] majorArray = ourList.getList().get(listPos).majorArray;
+                    String title = ourList.getList().get(listPos).getSongTitle();
+                    String author = ourList.getList().get(listPos).getArtistName();
+                    GUIGlyph majorGUIGlyph = new GUIGlyph(100 + 200 * ((listPos + 1) % 3),
+                            100 + 100 * (((listPos + 1) % 9) / 3), majorArray, mainWindow, title,
+                            author);
+                    
+                    GUIGlyphs.add(majorGUIGlyph);
+                    listPos++;
+                }
+            }
         }
         
         else if (sort.equals("region"))
         {
-            
+            int index = listPos;
+            removeGUIGlyphs();
+            for (int i = index; i < index + 9; i++) {
+                System.out.println(listPos);
+                if (listPos < ourList.getList().size()) {
+                    int[][] regionArray = ourList.getList().get(listPos).regionArray;
+                    String title = ourList.getList().get(listPos).getSongTitle();
+                    String author = ourList.getList().get(listPos).getArtistName();
+                    GUIGlyph regionGUIGlyph = new GUIGlyph(100 + 200 * ((listPos + 1) % 3),
+                            100 + 100 * (((listPos + 1) % 9) / 3), regionArray, mainWindow, title,
+                            author);
+                    
+                    GUIGlyphs.add(regionGUIGlyph);
+                    listPos++;
+                }
+            }
         }
     }
 
