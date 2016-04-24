@@ -315,7 +315,23 @@ public class GUISongWindow {
      * 
      */
     public void clickedRepresentRegion(Button regionButton) {
-
+        sort = "region";
+        removeGUIGlyphs();
+        createFirstGUIGlyphs();
+        mainKey.updateKey("Region Legend", "Northeast US", "Southeast US", "the rest of US", "Outside the US");
+        for (int i = 8; i >= 0; i--) {
+            if (listPos - i < ourList.getList().size()) {
+                int[][] regionArray = ourList.getList().get(listPos - i).regionArray;
+                String title = ourList.getList().get(listPos - i).getSongTitle();
+                String author = ourList.getList().get(listPos - i).getArtistName();
+                GUIGlyph regionGUIGlyph = new GUIGlyph(100 + 200 * ((listPos - i + 3) % 3),
+                        100 + 100 * ((listPos - i) / 3), regionArray, mainWindow, title,
+                        author);
+                
+                GUIGlyphs.add(regionGUIGlyph);
+            }
+        }
+        checkButtons();
     }
 
     /**
