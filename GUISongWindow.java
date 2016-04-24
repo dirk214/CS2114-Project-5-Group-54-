@@ -191,8 +191,21 @@ public class GUISongWindow {
     /**
      * 
      */
-    public void clickedSortByName(Button nameButton) {
-
+    public void clickedSortByName(Button nameButton) 
+    {
+        ourList.sortByArtistName();
+        createFirstGUIGlyphs();
+        for (int i = 8; i >= 0; i--)
+        {
+            if (listPos - i < ourList.getList().size() && listPos - i < GUIGlyphs.size())
+            {
+            String Name = ourList.getList().get(listPos - i).getArtistName();
+            String title = ourList.getList().get(listPos - i).getSongTitle();
+            GUIGlyphs.get(listPos - i).setBottomText(Name);
+            GUIGlyphs.get(listPos - i).setTitle(title);
+            //GUIGlyphs.get(listPos - i).updateLengthOfBars();
+            }
+        }
     }
 
     /**
@@ -209,6 +222,7 @@ public class GUISongWindow {
             String title = ourList.getList().get(listPos - i).getSongTitle();
             GUIGlyphs.get(listPos - i).setBottomText(genre);
             GUIGlyphs.get(listPos - i).setTitle(title);
+            //GUIGlyphs.get(listPos - i).updateLengthOfBars();
             }
         }
     }
@@ -217,15 +231,38 @@ public class GUISongWindow {
      * 
      */
     public void clickedSortBySongTitle(Button titleButton) {
-        removeGUIGlyphs();
         ourList.sortBySongTitle();
+        createFirstGUIGlyphs();
+        for (int i = 8; i >= 0; i--)
+        {
+            if (listPos - i < ourList.getList().size() && listPos - i < GUIGlyphs.size())
+            {
+            String title = ourList.getList().get(listPos - i).getSongTitle();
+            GUIGlyphs.get(listPos - i).setBottomText(title);
+            GUIGlyphs.get(listPos - i).setTitle(title);
+            //GUIGlyphs.get(listPos - i).updateLengthOfBars();
+            }
+        }
     }
 
     /**
      * 
      */
-    public void clickedSortByReleaseYear(Button yearButton) {
-
+    public void clickedSortByReleaseYear(Button yearButton) 
+    {
+        ourList.sortByReleaseYear();
+        createFirstGUIGlyphs();
+        for (int i = 8; i >= 0; i--)
+        {
+            if (listPos - i < ourList.getList().size() && listPos - i < GUIGlyphs.size())
+            {
+            String year = ourList.getList().get(listPos - i).getDate();
+            String title = ourList.getList().get(listPos - i).getSongTitle();
+            GUIGlyphs.get(listPos - i).setBottomText(year);
+            GUIGlyphs.get(listPos - i).setTitle(title);
+            //GUIGlyphs.get(listPos - i).updateLengthOfBars();
+            }
+        }
     }
 
     /**
