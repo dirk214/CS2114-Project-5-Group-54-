@@ -123,7 +123,7 @@ public class GUIGlyph {
         return input;
     }
 
-    public void updateLengthOfBars(int[][] intput) {
+    public void updateLengthOfBars(int[][] input) {
         input = this.getInput();
         purpleLengthHeard = input[0][0];
         blueLengthHeard = input[0][1];
