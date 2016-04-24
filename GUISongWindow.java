@@ -267,7 +267,7 @@ public class GUISongWindow {
      * 
      */
     public void clickedQuit(Button quitButton) {
-
+        System.exit(0);
     }
 
     private void removeGUIGlyphs()
