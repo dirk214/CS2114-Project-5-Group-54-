@@ -181,9 +181,11 @@ public class GUISongWindow {
         {
             int index = listPos;
             removeGUIGlyphs();
-            for (int i = index; i < index + 9; i++) {
+            for (int i = index; i < index + 9; i++) 
+            {
                 System.out.println(listPos);
-                if (listPos < ourList.getList().size()) {
+                if (listPos < ourList.getList().size()) 
+                {
                     int[][] majorArray = ourList.getList().get(listPos).majorArray;
                     String title = ourList.getList().get(listPos).getSongTitle();
                     String author = ourList.getList().get(listPos).getArtistName();
@@ -201,9 +203,11 @@ public class GUISongWindow {
         {
             int index = listPos;
             removeGUIGlyphs();
-            for (int i = index; i < index + 9; i++) {
+            for (int i = index; i < index + 9; i++) 
+            {
                 System.out.println(listPos);
-                if (listPos < ourList.getList().size()) {
+                if (listPos < ourList.getList().size()) 
+                {
                     int[][] regionArray = ourList.getList().get(listPos).regionArray;
                     String title = ourList.getList().get(listPos).getSongTitle();
                     String author = ourList.getList().get(listPos).getArtistName();
@@ -344,11 +348,12 @@ public class GUISongWindow {
     /**
      * 
      */
-    public void clickedRepresentRegion(Button regionButton) {
+    public void clickedRepresentRegion(Button regionButton) 
+    {
         sort = "region";
         removeGUIGlyphs();
         createFirstGUIGlyphs();
-        mainKey.updateKey("Region Legend", "Northeast US", "Southeast US", "the rest of US", "Outside the US");
+        mainKey.updateKey("Region Legend", "Comp Sci", "Other Eng", "Math/CMDA", "Other");
         for (int i = 8; i >= 0; i--) {
             if (listPos - i < ourList.getList().size()) {
                 int[][] regionArray = ourList.getList().get(listPos - i).regionArray;
