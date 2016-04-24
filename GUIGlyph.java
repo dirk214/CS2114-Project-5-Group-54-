@@ -125,14 +125,14 @@ public class GUIGlyph {
 
     public void updateLengthOfBars(int[][] intput) {
         input = this.getInput();
-        purpleLengthHeard = 55;
-        blueLengthHeard = 55;
-        yellowLengthHeard = 55;
-        greenLengthHeard = 55;
-        purpleLengthLiked = 55;
-        blueLengthLiked = 55;
-        yellowLengthLiked = 55;
-        greenLengthLiked = 55;
+        purpleLengthHeard = input[0][0];
+        blueLengthHeard = input[0][1];
+        yellowLengthHeard = input[0][2];
+        greenLengthHeard = input[0][3];
+        purpleLengthLiked = input[1][0];
+        blueLengthLiked = input[1][1];
+        yellowLengthLiked = input[1][2];
+        greenLengthLiked = input[1][3];
     }
 
     public LinkedList<Shape> getGUIGlyphList() {
