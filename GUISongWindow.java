@@ -253,7 +253,23 @@ public class GUISongWindow {
      * 
      */
     public void clickedRepresentMajor(Button majorButton) {
-
+        sort = "major";
+        removeGUIGlyphs();
+        createFirstGUIGlyphs();
+        mainKey.updateKey("Major Legend", "Comp Sci", "Other Eng", "Math/CMDA", "Other");
+        for (int i = 8; i >= 0; i--) {
+            if (listPos - i < ourList.getList().size()) {
+                int[][] majorArray = ourList.getList().get(listPos - i).majorArray;
+                String title = ourList.getList().get(listPos - i).getSongTitle();
+                String author = ourList.getList().get(listPos - i).getArtistName();
+                GUIGlyph majorGUIGlyph = new GUIGlyph(100 + 200 * ((listPos - i + 3) % 3),
+                        100 + 100 * ((listPos - i) / 3), majorArray, mainWindow, title,
+                        author);
+                
+                GUIGlyphs.add(majorGUIGlyph);
+            }
+        }
+        checkButtons();
     }
 
     /**
