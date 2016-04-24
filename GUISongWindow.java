@@ -102,8 +102,8 @@ public class GUISongWindow {
         mainKey = new Key(650, 100);
 
         // Button Instantiation.
-        previous = new Button("⬅ Previous");
-        next = new Button("Next ➡");
+        previous = new Button(" Previous");
+        next = new Button("Next ");
         sortByName = new Button("Sort By Artist Name");
         sortByGenre = new Button("Sort By Genre");
         sortBySongTitle = new Button("Sort by Song Title");
@@ -206,7 +206,9 @@ public class GUISongWindow {
             if (listPos - i < ourList.getList().size() && listPos - i < GUIGlyphs.size())
             {
             String genre = ourList.getList().get(listPos - i).getGenre();
+            String title = ourList.getList().get(listPos - i).getSongTitle();
             GUIGlyphs.get(listPos - i).setBottomText(genre);
+            GUIGlyphs.get(listPos - i).setTitle(title);
             }
         }
     }
@@ -276,23 +278,7 @@ public class GUISongWindow {
      * 
      */
     public void clickedRepresentRegion(Button regionButton) {
-        sort = "region";
-        removeGUIGlyphs();
-        createFirstGUIGlyphs();
-        mainKey.updateKey("Region Legend", "Northeast US", "Southeast US", "the rest of US", "outside the US");
-        for (int i = 8; i >= 0; i--) {
-            if (listPos - i < ourList.getList().size()) {
-                int[][] regionArray = ourList.getList().get(listPos - i).regionArray;
-                String title = ourList.getList().get(listPos - i).getSongTitle();
-                String author = ourList.getList().get(listPos - i).getArtistName();
-                GUIGlyph regionGUIGlyph = new GUIGlyph(100 + 200 * ((listPos - i + 3) % 3),
-                        100 + 100 * ((listPos - i) / 3), regionArray, mainWindow, title,
-                        author);
-                
-                GUIGlyphs.add(regionGUIGlyph);
-            }
-        }
-        checkButtons();
+
     }
 
     /**
