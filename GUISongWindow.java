@@ -159,16 +159,18 @@ public class GUISongWindow {
     public void clickedNext(Button nextButton) {
         if (sort.equals("hobby"))
         {
+            
             int index = listPos;
             removeGUIGlyphs();
             for (int i = index; i < index + 9; i++) {
                 System.out.println(listPos);
+                System.out.println(ourList.getList().get(listPos).getSongTitle());
                 if (listPos < ourList.getList().size()) {
                     int[][] hobbyArray = ourList.getList().get(listPos).hobbyArray;
                     String title = ourList.getList().get(listPos).getSongTitle();
                     String author = ourList.getList().get(listPos).getArtistName();
-                    GUIGlyph hobbyGUIGlyph = new GUIGlyph(100 + 200 * ((listPos + 1) % 3),
-                            100 + 100 * (((listPos + 1) % 9) / 3), hobbyArray, mainWindow, title,
+                    GUIGlyph hobbyGUIGlyph = new GUIGlyph(100 + 200 * ((listPos) % 3),
+                            100 + 100 * (((listPos) % 9) / 3), hobbyArray, mainWindow, title,
                             author);
                     
                     GUIGlyphs.add(hobbyGUIGlyph);
@@ -176,6 +178,47 @@ public class GUISongWindow {
                 }
             }
         }
+        
+        else if (sort.equals("major"))
+        {
+            int index = listPos;
+            removeGUIGlyphs();
+            for (int i = index; i < index + 9; i++) {
+                System.out.println(listPos);
+                if (listPos < ourList.getList().size()) {
+                    int[][] majorArray = ourList.getList().get(listPos).majorArray;
+                    String title = ourList.getList().get(listPos).getSongTitle();
+                    String author = ourList.getList().get(listPos).getArtistName();
+                    GUIGlyph majorGUIGlyph = new GUIGlyph(100 + 200 * ((listPos) % 3),
+                            100 + 100 * (((listPos) % 9) / 3), majorArray, mainWindow, title,
+                            author);
+                    
+                    GUIGlyphs.add(majorGUIGlyph);
+                    listPos++;
+                }
+            }
+        }
+        
+        else if (sort.equals("region"))
+        {
+            int index = listPos;
+            removeGUIGlyphs();
+            for (int i = index; i < index + 9; i++) {
+                System.out.println(listPos);
+                if (listPos < ourList.getList().size()) {
+                    int[][] regionArray = ourList.getList().get(listPos).regionArray;
+                    String title = ourList.getList().get(listPos).getSongTitle();
+                    String author = ourList.getList().get(listPos).getArtistName();
+                    GUIGlyph regionGUIGlyph = new GUIGlyph(100 + 200 * ((listPos) % 3),
+                            100 + 100 * (((listPos) % 9) / 3), regionArray, mainWindow, title,
+                            author);
+                    
+                    GUIGlyphs.add(regionGUIGlyph);
+                    listPos++;
+                }
+            }
+        }
+    }
         
         else if (sort.equals("major"))
         {
@@ -319,6 +362,7 @@ public class GUISongWindow {
                 GUIGlyphs.add(hobbyGUIGlyph);
             }
         }
+        listPos++;
         checkButtons();
     }
 
@@ -342,18 +386,18 @@ public class GUISongWindow {
                 GUIGlyphs.add(majorGUIGlyph);
             }
         }
+        listPos++;
         checkButtons();
     }
 
     /**
      * 
      */
-    public void clickedRepresentRegion(Button regionButton) 
-    {
+    public void clickedRepresentRegion(Button regionButton) {
         sort = "region";
         removeGUIGlyphs();
         createFirstGUIGlyphs();
-        mainKey.updateKey("Region Legend", "Comp Sci", "Other Eng", "Math/CMDA", "Other");
+        mainKey.updateKey("Region Legend", "Northeast US", "Southeast US", "the rest of US", "Outside the US");
         for (int i = 8; i >= 0; i--) {
             if (listPos - i < ourList.getList().size()) {
                 int[][] regionArray = ourList.getList().get(listPos - i).regionArray;
@@ -366,6 +410,7 @@ public class GUISongWindow {
                 GUIGlyphs.add(regionGUIGlyph);
             }
         }
+        listPos++;
         checkButtons();
     }
 
