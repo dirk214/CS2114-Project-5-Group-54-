@@ -153,10 +153,7 @@ public class GUISongWindow {
     public void clickedPrevious(Button prevButton) {
         if (sort.equals("hobby"))
         {
-            System.out.println("First Old: " + firstSongPos);
             firstSongPos = firstSongPos - 9;
-            System.out.println("First New: " + firstSongPos);
-            System.out.println("Last Old: " + (lastSongPos));
             lastSongPos = firstSongPos;
             removeGUIGlyphs();
             for (int i = firstSongPos; i < firstSongPos + 9; i++) {
@@ -173,7 +170,6 @@ public class GUISongWindow {
                 }
             }
             lastSongPos--;
-            System.out.println("Last new: " + lastSongPos);
         }
         
         else if (sort.equals("major"))
@@ -194,6 +190,7 @@ public class GUISongWindow {
                     lastSongPos++;
                 }
             }
+            lastSongPos--;
         }
         
         else if (sort.equals("region"))
@@ -214,6 +211,7 @@ public class GUISongWindow {
                     lastSongPos++;
                 }
             }
+            lastSongPos--;
         }
     }
 
