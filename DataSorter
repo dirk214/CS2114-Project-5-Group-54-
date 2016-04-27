@@ -146,7 +146,7 @@ public class DataSorter {
             case "Computer Science":
                 major = 0;
                 break;
-            case "Other Eng":
+            case "Other Engineering":
                 major = 1;
                 break;
             case "Math or CMDA":
@@ -166,10 +166,10 @@ public class DataSorter {
             case "Southeast":
                 region = 1;
                 break;
-            case "Other US":
+            case "United States (other than Southeast or Northwest)":
                 region = 2;
                 break;
-            case "Outside US":
+            case "Outside of United States":
                 region = 3;
                 break;
             default:
