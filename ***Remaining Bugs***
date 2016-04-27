@@ -1,0 +1,30 @@
+(Please do everything possible on the window to look for bugs and add them here if you find any)
+
+IMPORTANT (non-design-related bugs)
+__________
+* "by U2" is displayed without a song title (this is the only song that does this)
+* Need to disable previous/next at appropriate times. This is the checkButtons() method but it does not currently work properly.
+
+DESIGN ISSUES
+__________
+*Window is too small (possibly, not completely sure on this. Just test a bunch of random things and see if anything goes off the window.
+We could expand the window because the key is going off it, or we could recenter the key).
+*Keys are wrong. Here are the correct keys (keeping colors in same order):
+
+Reading
+Art
+Sports
+Music
+
+Computer Science
+Other Eng
+Math or CMDA
+Other
+
+Northeast US
+Southeast US
+Other US
+Outside US
+
+*Before any text is opened, little yellow bars are seen near the key that shouldn't be there.
+*The black bar in the glyphs should be a little skinnier (I can take care of this).
