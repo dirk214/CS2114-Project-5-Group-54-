@@ -219,6 +219,7 @@ public class GUISongWindow {
             }
             lastSongPos--;
         }
+        checkButtons();
     }
 
     /**
@@ -290,6 +291,7 @@ public class GUISongWindow {
             }
             lastSongPos--;
         }
+        checkButtons();
     }
 
     /**
@@ -307,8 +309,8 @@ public class GUISongWindow {
                 
                 GUIGlyphs.get(i % 9).swapBars(newArray, mainWindow);
             }
-
         }
+        checkButtons();
     }
 
     /**
@@ -329,6 +331,7 @@ public class GUISongWindow {
             }
 
         }
+        checkButtons();
     }
 
     /**
@@ -347,8 +350,8 @@ public class GUISongWindow {
                 
                 GUIGlyphs.get(i % 9).swapBars(newArray, mainWindow);
             }
-
         }
+        checkButtons();
     }
 
     /**
@@ -369,6 +372,7 @@ public class GUISongWindow {
             }
 
         }
+        checkButtons();
     }
 
     /**
@@ -489,7 +493,7 @@ public class GUISongWindow {
             next.enable();
         }
 
-        if (lastSongPos == 0) {
+        if (lastSongPos == 8 || firstSongPos == 0) {
             previous.disable();
         }
 
