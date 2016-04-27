@@ -3,7 +3,7 @@
 IMPORTANT (non-design-related bugs)
 __________
 * "by U2" is displayed without a song title (this is the only song that does this)
-* Need to disable previous/next at appropriate times. This is the checkButtons() method but it does not currently work properly.
+(FIXED)* Need to disable previous/next at appropriate times. This is the checkButtons() method but it does not currently work properly.
 
 DESIGN ISSUES
 __________
