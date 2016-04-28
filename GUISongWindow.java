@@ -381,7 +381,7 @@ public class GUISongWindow {
     public void clickedRepresentHobby(Button hobbyButton) {
         sort = "hobby";
         removeGUIGlyphs();
-        mainKey.updateKey("Hobby Legend", "Read", "Art", "Sports", "Music");
+        mainKey.updateKey("Hobby Legend", "Reading", "Art", "Sports", "Music");
         if (lastSongPos == 0) {
             createFirstGUIGlyphs();
         }
@@ -775,8 +775,8 @@ public class GUISongWindow {
         /**
          * Is called by the button onClickMethods and redo's the key.
          */
-        public void updateKey(String newTitle, String newGreen,
-                String newPurple, String newYellow, String newBlue) {
+        public void updateKey(String newTitle, String newPurple,
+                String newBlue, String newYellow, String newGreen) {
             keyTitle.setText(newTitle);
             greenText.setText(newGreen);
             yellowText.setText(newYellow);
