@@ -1,17 +1,19 @@
 (Please do everything possible on the window to look for bugs and add them here if you find any)
 
-Non-Fixed Bugs Remaining: 2
+Non-Fixed Bugs Remaining: 0
 
 IMPORTANT (non-design-related bugs)
 __________
-* "by U2" is displayed without a song title (this is the only song that does this)
 
 DESIGN ISSUES
 __________
-*Java doc
 
 FIXED OR NO LONGER A PROBLEM
 _________
+
+(DONE) *Java doc
+
+(FIXED) * "by U2" is displayed without a song title (this is the only song that does this)
 
 (FIXED)* Clicking a "sort" method before displaying by hobby/major/region causes an error.
 
