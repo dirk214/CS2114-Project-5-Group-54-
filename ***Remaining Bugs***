@@ -1,16 +1,24 @@
 (Please do everything possible on the window to look for bugs and add them here if you find any)
 
-Non-Fixed Bugs Remaining: 2
+Non-Fixed Bugs Remaining: 4
 
 IMPORTANT (non-design-related bugs)
 __________
 * "by U2" is displayed without a song title (this is the only song that does this)
-(FIXED)* Need to disable previous/next at appropriate times. This is the checkButtons() method but it does not currently work properly.
+* Clicking a "sort" method before displaying by hobby/major/region causes an error.
 
 DESIGN ISSUES
 __________
-*Window is too small (possibly, not completely sure on this. Just test a bunch of random things and see if anything goes off the window.
-We could expand the window because the key is going off it, or we could recenter the key).
+*Glyph goes off-screen
+*Java doc
+
+FIXED OR NO LONGER A PROBLEM
+_________
+
+(FIXED)* Need to disable previous/next at appropriate times. This is the checkButtons() method but it does not currently work properly.
+
+*The black bar in the glyphs should be a little skinnier (I can take care of this).
+
 (FIXED)*Keys are wrong. Here are the correct keys (keeping colors in same order):
 
 Reading
@@ -29,4 +37,3 @@ Other US
 Outside US
 
 (FIXED)*Before any text is opened, little yellow bars are seen near the key that shouldn't be there.
-*The black bar in the glyphs should be a little skinnier (I can take care of this).
