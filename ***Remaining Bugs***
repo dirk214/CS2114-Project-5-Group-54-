@@ -1,5 +1,7 @@
 (Please do everything possible on the window to look for bugs and add them here if you find any)
 
+Non-Fixed Bugs Remaining: 2
+
 IMPORTANT (non-design-related bugs)
 __________
 * "by U2" is displayed without a song title (this is the only song that does this)
@@ -26,5 +28,5 @@ Southeast US
 Other US
 Outside US
 
-*Before any text is opened, little yellow bars are seen near the key that shouldn't be there.
+(FIXED)*Before any text is opened, little yellow bars are seen near the key that shouldn't be there.
 *The black bar in the glyphs should be a little skinnier (I can take care of this).
