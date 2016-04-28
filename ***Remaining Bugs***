@@ -1,19 +1,21 @@
 (Please do everything possible on the window to look for bugs and add them here if you find any)
 
-Non-Fixed Bugs Remaining: 4
+Non-Fixed Bugs Remaining: 2
 
 IMPORTANT (non-design-related bugs)
 __________
 * "by U2" is displayed without a song title (this is the only song that does this)
-* Clicking a "sort" method before displaying by hobby/major/region causes an error.
 
 DESIGN ISSUES
 __________
-*Glyph goes off-screen
 *Java doc
 
 FIXED OR NO LONGER A PROBLEM
 _________
+
+(FIXED)* Clicking a "sort" method before displaying by hobby/major/region causes an error.
+
+(FIXED)*Glyph goes off-screen
 
 (FIXED)* Need to disable previous/next at appropriate times. This is the checkButtons() method but it does not currently work properly.
 
