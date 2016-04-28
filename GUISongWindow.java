@@ -87,6 +87,8 @@ public class GUISongWindow {
      * 
      */
     Key mainKey;
+    
+    boolean updateKeyCalled = false;
 
     /**
      * 
@@ -438,7 +440,7 @@ public class GUISongWindow {
         sort = "region";
         removeGUIGlyphs();
         mainKey.updateKey("Region Legend", "Northeast US", "Southeast US",
-                "the rest of US", "Outside the US");
+                "The rest of US", "Outside the US");
         if (lastSongPos == 0) {
             createFirstGUIGlyphs();
         } else {
@@ -500,11 +502,24 @@ public class GUISongWindow {
         else {
             previous.enable();
         }
+        
+        if (sort.equals(""))
+        {
+            sortByName.disable();
+            sortBySongTitle.disable();
+            sortByReleaseYear.disable();
+            sortByGenre.disable();
+        }
+        
+        else
+        {
+            sortByName.enable();
+            sortBySongTitle.enable();
+            sortByReleaseYear.enable();
+            sortByGenre.enable();
+        }
     }
 
-    /**
-     * Ignore for now
-     */
     private void createFirstGUIGlyphs() {
         if (sort.equals("hobby")) {
             for (int i = firstSongPos; i < firstSongPos + 9; i++) {
@@ -709,6 +724,8 @@ public class GUISongWindow {
          * 
          */
         Shape blackBar;
+        
+        Shape border;
 
         /**
          * 
@@ -731,12 +748,12 @@ public class GUISongWindow {
             yValue = y;
 
             // Fields instantiation.
-            keyTitle = new TextShape(xValue - 15, yValue, "", Color.BLACK);
-            purpleText = new TextShape(xValue, yValue + 25, "", Color.MAGENTA);
-            blueText = new TextShape(xValue, yValue + 40, "", Color.BLUE);
-            yellowText = new TextShape(xValue, yValue + 55, "", Color.YELLOW);
-            greenText = new TextShape(xValue, yValue + 70, "", Color.GREEN);
-            songText = new TextShape(xValue - 15, yValue + 90, "Song Title",
+            keyTitle = new TextShape(xValue - 30, yValue, "", Color.BLACK);
+            purpleText = new TextShape(xValue - 25, yValue + 25, "", Color.MAGENTA);
+            blueText = new TextShape(xValue - 25, yValue + 40, "", Color.BLUE);
+            yellowText = new TextShape(xValue - 25, yValue + 55, "", Color.YELLOW);
+            greenText = new TextShape(xValue - 25, yValue + 70, "", Color.GREEN);
+            songText = new TextShape(xValue - 25, yValue + 90, "Song Title",
                     Color.BLACK);
             heardText = new TextShape(xValue - 29, yValue + 135, "Heard",
                     Color.BLACK);
@@ -744,18 +761,9 @@ public class GUISongWindow {
                     Color.BLACK);
             blackBar = new Shape(xValue + 13, yValue + 105, 10, 75,
                     Color.BLACK);
+            border = new Shape(xValue - 35, yValue - 10, 125, 195, Color.BLACK);
+            border.setBackgroundColor(Color.WHITE);
 
-            // Fields addition.
-
-            mainWindow.addShape(keyTitle);
-            mainWindow.addShape(purpleText);
-            mainWindow.addShape(greenText);
-            mainWindow.addShape(blueText);
-            mainWindow.addShape(yellowText);
-            mainWindow.addShape(songText);
-            mainWindow.addShape(heardText);
-            mainWindow.addShape(likedText);
-            mainWindow.addShape(blackBar);
         }
 
         /**
@@ -777,11 +785,27 @@ public class GUISongWindow {
          */
         public void updateKey(String newTitle, String newPurple,
                 String newBlue, String newYellow, String newGreen) {
+            if (!updateKeyCalled)
+            {
+                // Fields addition.
+
+                mainWindow.addShape(keyTitle);
+                mainWindow.addShape(purpleText);
+                mainWindow.addShape(greenText);
+                mainWindow.addShape(blueText);
+                mainWindow.addShape(yellowText);
+                mainWindow.addShape(songText);
+                mainWindow.addShape(heardText);
+                mainWindow.addShape(likedText);
+                mainWindow.addShape(blackBar);
+                mainWindow.addShape(border);
+            }
             keyTitle.setText(newTitle);
             greenText.setText(newGreen);
             yellowText.setText(newYellow);
             blueText.setText(newBlue);
             purpleText.setText(newPurple);
+            updateKeyCalled = true;
         }
 
     }
